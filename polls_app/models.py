@@ -12,7 +12,7 @@ class Poll(models.Model):
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll, 
-                            related_name="related choices", 
+                            related_name="choices", 
                             on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=100)
 
@@ -21,13 +21,13 @@ class Choice(models.Model):
 
 class Vote(models.Model):
     choice = models.ForeignKey(Choice, 
-                                related_name="related votes", 
+                                related_name="votes", 
                                 on_delete=models.CASCADE)
     poll = models.ForeignKey(Poll,
                             on_delete=models.CASCADE)
     voted_by = models.ForeignKey(User,
                                 on_delete=models.CASCADE)
     class Meta:
-        unique_together = ("Meta poll", "Meta voted_by")
+        unique_together = ("poll", "voted_by")
 
 

@@ -5,6 +5,12 @@ from .models import Poll
 
 # Create your views here.
 
+def polls_home(request):
+    welcome = {
+        "saludo":"Bienvenido al homepage"
+    }
+    return JsonResponse(welcome)
+
 def polls_list(request):
     MAX_OBJECTS = 20
     polls = Poll.objects.all()[:MAX_OBJECTS]
@@ -16,8 +22,7 @@ def polls_list(request):
                             "created_by",
                             "pub_date")
                         )
-                        }
-
+            }
     return JsonResponse(data)
 
 def polls_detail(request, pk):

@@ -1,0 +1,11 @@
+A user must be authenticated to access a poll or the list of polls.
+• Create User ===> Done •
+• Only an authenticated users can create a poll.
+• Only an authenticated user can create a choice.
+• Authenticated users can create choices only for polls they have created.
+• Authenticated users can delete only polls they have created.
+• Only an authenticated user can vote. Users can vote for other people’s polls.
+
+To enable the access control, we need to add two more APIs
+• API to create a user, we will call this endpoint /users/
+• API to verify a user and get a token to identify them, we will call this endpoint /login/

@@ -5,7 +5,7 @@ from rest_framework import viewsets
 
 from django.shortcuts import get_object_or_404
 from .models import Poll, Choice
-from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer
+from .serializers import PollSerializer, ChoiceSerializer, VoteSerializer, UserSerializer
 
 
 
@@ -58,5 +58,9 @@ class CreateVote(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
+#User creation
+#give exemption to UserCreate view for authentication by overriding the global setting
+class UserCreate(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = UserSerializer
